@@ -3,7 +3,8 @@
 Launch-Tracker is a web application which provides information for all SPACEX Launches till date.
 
 ## Quick links
-Website: https://github.com/heymanpreet/Rocket-Launch-Tracker
+Website: https://spx-launch-tracker.herokuapp.com/allLaunches
+Github URL: https://github.com/heymanpreet/Rocket-Launch-Tracker
 
 ## Running Launch Tracker Application
 
