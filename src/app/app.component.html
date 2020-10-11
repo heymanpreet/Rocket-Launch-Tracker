@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="header">
+    <h2>SpaceX Launch Programs</h2>
+  </div>
+  <div class="full-content">
+    <div class="left-content">
+      <h2>Filters</h2>
+      <div class="yearSelect">
+        <h3>Launch Year</h3>
+        <div class="all-year">
+          <button class="btn-style" [ngClass]="{'highlight':launch === yearSelectValue}" *ngFor="let launch of launchYears" (click)="loadLaunchYear(launch)">
+            {{launch}}
+          </button>
+        </div>
+      </div>
+      <div class="Launch-success">
+        <h3>Successful Launch</h3>
+        <button class="btn-style" (click)="toggleLaunch('Y')" [ngClass]="{'highlight':successLaunch === true}">
+          True
+        </button>
+        <button class="btn-style" (click)="toggleLaunch('N')" [ngClass]="{'highlight':successLaunch === false}">
+          False
+        </button>
+      </div>
+      <div class="Land-success">
+        <h3>Successful Landing</h3>
+        <button class="btn-style" (click)="toggleLand('Y')" [ngClass]="{'highlight':successLand === true}">
+          True
+        </button>
+        <button class="btn-style" (click)="toggleLand('N')" [ngClass]="{'highlight':successLand === false}">
+          False
+        </button>
+      </div>
+    </div>
+    <div class="right-content">
+      <div class="launch-detail-container">
+        <div class="card" *ngFor="let details of launch_details">
+          <div class="card-image">
+            <img src="{{details['image-link']}}" alt="Launch Image">
+          </div>
+          <div class="card-content">
+            <h2 class="card-title">{{details['launch-title']}} #{{details['launch-num']}} </h2>
+            <ul class="card-detail">
+              <li class=""><b>Mission Ids: </b>{{details['mission-id']}} </li>
+              <li class=""><b>Launch Year: </b>{{details['launch-year']}}</li>
+              <li class=""><b>Successful Launch: </b>{{details['launch-Success']}}</li>
+              <li class=""><b>Successful Landing: </b> {{details['launch_landing']}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3 class="made_by">Made by Manpreet Chawla</h3>
+</div>
