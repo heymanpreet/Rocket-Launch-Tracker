@@ -8,7 +8,8 @@
       <div class="yearSelect">
         <h3>Launch Year</h3>
         <div class="all-year">
-          <button class="btn-style" [ngClass]="{'highlight':launch === yearSelectValue}" *ngFor="let launch of launchYears" (click)="loadLaunchYear(launch)">
+          <button class="btn-style" [ngClass]="{'highlight':launch === yearSelectValue}"
+            *ngFor="let launch of launchYears" (click)="loadLaunchYear(launch)">
             {{launch}}
           </button>
         </div>
@@ -34,9 +35,10 @@
     </div>
     <div class="right-content">
       <div class="launch-detail-container">
+        <meta name="description" content="Simple website to keep track of all SpaceX launches till date.">
         <div class="card" *ngFor="let details of launch_details">
           <div class="card-image">
-            <img src="{{details['image-link']}}" alt="Launch Image">
+            <img data-src="{{details['image-link']}}" class="lazyload" alt="Launch Image">
           </div>
           <div class="card-content">
             <h2 class="card-title">{{details['launch-title']}} #{{details['launch-num']}} </h2>
