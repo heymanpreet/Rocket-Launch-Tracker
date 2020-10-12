@@ -33,7 +33,7 @@ export class AppComponent {
     let obj;
     let missionIds = [];
     const launchDetails = await this.getLaunchDetail();
-    console.log(launchDetails);
+    // console.log(launchDetails);
 
     for (let i in launchDetails) {
       this.allLaunchDetails.push(launchDetails[i]);
@@ -44,7 +44,7 @@ export class AppComponent {
       // Mission Ids
       if (launchDetails[i].mission_id.length != 0) {
         missionIds.push(launchDetails[i].mission_id);
-        console.log(missionIds);
+        // console.log(missionIds);
       }
       // Launch details for populate on UI
       obj = {
@@ -55,8 +55,8 @@ export class AppComponent {
       }
       this.launch_details.push(obj);
     }
-    console.log(this.launchYears);
-    console.log(this.launch_details);
+    // console.log(this.launchYears);
+    // console.log(this.launch_details);
   }
 
   loadLaunchYear(year) {
@@ -115,7 +115,6 @@ export class AppComponent {
       // Mission Ids
       if (filterDetails[i].mission_id.length != 0) {
         missionIds.push(filterDetails[i].mission_id);
-        console.log(missionIds);
       }
       // Launch details for populate on UI
       obj = {
