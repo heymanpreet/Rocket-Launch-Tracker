@@ -80,7 +80,8 @@ export class AppComponent {
     if(val == 'N') {
       this.successLand = false;
     }
-    this.calulateFilteredDetails(this.yearSelectValue,this.successLaunch,this.successLand)
+    // this.calulateFilteredDetails(this.yearSelectValue,this.successLaunch,this.successLand)
+    this.toggleLaunch(this.successLand?'Y':'N');
   }
 
   calulateFilteredDetailsService(year,launch,land) {
@@ -120,7 +121,7 @@ export class AppComponent {
       obj = {
         "launch-title": filterDetails[i].mission_name, "launch-num": filterDetails[i].flight_number,
         "launch-year": filterDetails[i].launch_year, "launch-Success": filterDetails[i].launch_success,
-        "launch_landing": filterDetails[i].launch_landing,"mission-id":filterDetails[0],
+        "launch_landing": filterDetails[i].launch_landing,"mission-id":missionIds[0],
         "image-link":filterDetails[i].links.mission_patch_small
       }
       this.launch_details.push(obj);

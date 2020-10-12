@@ -16,6 +16,7 @@
       </div>
       <div class="Launch-success">
         <h3>Successful Launch</h3>
+        <div class="all-year">
         <button class="btn-style" (click)="toggleLaunch('Y')" [ngClass]="{'highlight':successLaunch === true}">
           True
         </button>
@@ -23,14 +24,17 @@
           False
         </button>
       </div>
+      </div>
       <div class="Land-success">
         <h3>Successful Landing</h3>
+        <div class="all-year">
         <button class="btn-style" (click)="toggleLand('Y')" [ngClass]="{'highlight':successLand === true}">
           True
         </button>
         <button class="btn-style" (click)="toggleLand('N')" [ngClass]="{'highlight':successLand === false}">
           False
         </button>
+        </div>
       </div>
     </div>
     <div class="right-content">
