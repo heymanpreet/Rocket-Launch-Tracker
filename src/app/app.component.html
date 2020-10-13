@@ -2,7 +2,8 @@
   <div class="header">
     <h2>SpaceX Launch Programs</h2>
   </div>
-  <div class="full-content">
+  <span *ngIf="error"><h2>{{errorMsg}}</h2></span>
+  <div class="full-content" *ngIf="!error">
     <div class="left-content">
       <h2>Filters</h2>
       <div class="yearSelect">
@@ -48,7 +49,7 @@
             <h2 class="card-title">{{details['launch-title']}} #{{details['launch-num']}} </h2>
             <ul class="card-detail">
               <li class="">
-                <ul><b>Mission Ids: </b>
+                <ul style="text-align: left;"><b>Mission Ids: </b>
                   <li *ngFor="let id of details['mission-id']">
                     {{id}}
                   </li>
