@@ -25,6 +25,7 @@ export class AppComponent {
     this.getAllData();
     this.successLaunch = undefined;
     this.successLand = undefined;
+    this.yearSelectValue = undefined;
     this.location.replaceState('/allLaunches');
   }
   getLaunchDetail() {
@@ -33,6 +34,7 @@ export class AppComponent {
 
   async getAllData() {
     let obj;
+    let landingSuccess;
     const launchDetails = await this.getLaunchDetail();
     // console.log(launchDetails);
     if (launchDetails && [launchDetails].length) {
@@ -42,12 +44,17 @@ export class AppComponent {
         if (this.launchYears.indexOf(launchDetails[i].launch_year) === -1) {
           this.launchYears.push(launchDetails[i].launch_year);
         }
+        //landing-success
+        if(launchDetails[i].first_stag && launchDetails[i].first_stage.cores.land_success) {
+          landingSuccess = launchDetails[i].first_stage.cores[0].land_success;
+        } else {
+          landingSuccess = undefined;
+        }
         // Launch details for populate on UI
         obj = {
           "launch-title": launchDetails[i].mission_name, "launch-num": launchDetails[i].flight_number,
-          "launch-year": launchDetails[i].launch_year, "launch-Success": launchDetails[i].launch_success,
-          "launch_landing": launchDetails[i].launch_landing, "mission-id": launchDetails[i].mission_id,
-          "image-link": launchDetails[i].links.mission_patch_small
+          "launch-year": launchDetails[i].launch_year, "launch-Success": launchDetails[i].launch_success, "mission-id": launchDetails[i].mission_id,
+          "image-link": launchDetails[i].links.mission_patch_small, "land-success":landingSuccess
         }
         this.launch_details.push(obj);
       }
@@ -80,16 +87,16 @@ export class AppComponent {
     if (val === 'N') {
       this.successLand = false;
     }
-    // this.calulateFilteredDetails(this.yearSelectValue,this.successLaunch,this.successLand)
-    this.toggleLaunch(this.successLand ? 'Y' : 'N');
+    this.calulateFilteredDetails(this.yearSelectValue,this.successLaunch,this.successLand)
+    // this.toggleLaunch(this.successLand ? 'Y' : 'N');
   }
 
   calulateFilteredDetailsService(year, launch, land) {
-    if (launch !== undefined) {
+    if (launch !== undefined && !year && !land) {
       this.location.replaceState("/filterLaunchSuccess");
       return this.launchDetailsService.getSuccessfulLaunch(launch).toPromise();
     }
-    if (land !== undefined) {
+    if (land !== undefined && !year && !launch) {
       this.location.replaceState("/filterLandSuccess");
       return this.launchDetailsService.getSuccessfulLand(land).toPromise();
     }
@@ -110,17 +117,26 @@ export class AppComponent {
   async calulateFilteredDetails(year, launch, land) {
     const filterDetails = await this.calulateFilteredDetailsService(this.yearSelectValue, this.successLaunch, this.successLand);
     let obj;
+    let landingSuccess;
     this.launch_details = [];
     for (const i in filterDetails) {
       // Launch details for populate on UI
+      //landing-success
+      if(filterDetails[i].first_stag && filterDetails[i].first_stage.cores.land_success) {
+        landingSuccess = filterDetails[i].first_stage.cores[0].land_success;
+      } else {
+        landingSuccess = undefined;
+      }
       obj = {
         "launch-title": filterDetails[i].mission_name, "launch-num": filterDetails[i].flight_number,
         "launch-year": filterDetails[i].launch_year, "launch-Success": filterDetails[i].launch_success,
-        "launch_landing": filterDetails[i].launch_landing, "mission-id": filterDetails[i].mission_id,
+        "land-success":landingSuccess, "mission-id": filterDetails[i].mission_id,
         "image-link": filterDetails[i].links.mission_patch_small
       }
       this.launch_details.push(obj);
     }
+    console.log(this.launch_details);
+    
 
   }
 

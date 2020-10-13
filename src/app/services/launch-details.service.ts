@@ -17,7 +17,7 @@ export class LaunchDetailsService {
    }
 
    getSuccessfulLand(land) {
-    return this.http.get(this.url + "&land_success=true" + land);
+    return this.http.get(this.url + "&land_success=" + land);
    }
 
    getSuccessfulLaunchLand(launch,land) {
