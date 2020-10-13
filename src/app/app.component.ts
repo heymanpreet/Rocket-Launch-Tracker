@@ -31,7 +31,6 @@ export class AppComponent {
 
   async getAllData() {
     let obj;
-    let missionIds = [];
     const launchDetails = await this.getLaunchDetail();
     // console.log(launchDetails);
 
@@ -41,22 +40,17 @@ export class AppComponent {
       if (this.launchYears.indexOf(launchDetails[i].launch_year) === -1) {
         this.launchYears.push(launchDetails[i].launch_year);
       }
-      // Mission Ids
-      if (launchDetails[i].mission_id.length != 0) {
-        missionIds.push(launchDetails[i].mission_id);
-        // console.log(missionIds);
-      }
       // Launch details for populate on UI
       obj = {
         "launch-title": launchDetails[i].mission_name, "launch-num": launchDetails[i].flight_number,
         "launch-year": launchDetails[i].launch_year, "launch-Success": launchDetails[i].launch_success,
-        "launch_landing": launchDetails[i].launch_landing,"mission-id":missionIds[0],
+        "launch_landing": launchDetails[i].launch_landing,"mission-id":launchDetails[i].mission_id,
         "image-link":launchDetails[i].links.mission_patch_small
       }
       this.launch_details.push(obj);
     }
     // console.log(this.launchYears);
-    // console.log(this.launch_details);
+    console.log(this.launch_details);
   }
 
   loadLaunchYear(year) {
@@ -109,19 +103,14 @@ export class AppComponent {
 
   async calulateFilteredDetails(year,launch,land) {
     const filterDetails = await this.calulateFilteredDetailsService(this.yearSelectValue,this.successLaunch,this.successLand);
-    let missionIds = [];
     let obj;
     this.launch_details = [];
     for (let i in filterDetails) {
-      // Mission Ids
-      if (filterDetails[i].mission_id.length != 0) {
-        missionIds.push(filterDetails[i].mission_id);
-      }
       // Launch details for populate on UI
       obj = {
         "launch-title": filterDetails[i].mission_name, "launch-num": filterDetails[i].flight_number,
         "launch-year": filterDetails[i].launch_year, "launch-Success": filterDetails[i].launch_success,
-        "launch_landing": filterDetails[i].launch_landing,"mission-id":missionIds[0],
+        "launch_landing": filterDetails[i].launch_landing,"mission-id":filterDetails[i].mission_id,
         "image-link":filterDetails[i].links.mission_patch_small
       }
       this.launch_details.push(obj);

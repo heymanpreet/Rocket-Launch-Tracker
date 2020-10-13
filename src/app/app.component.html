@@ -17,23 +17,23 @@
       <div class="Launch-success">
         <h3>Successful Launch</h3>
         <div class="all-year">
-        <button class="btn-style" (click)="toggleLaunch('Y')" [ngClass]="{'highlight':successLaunch === true}">
-          True
-        </button>
-        <button class="btn-style" (click)="toggleLaunch('N')" [ngClass]="{'highlight':successLaunch === false}">
-          False
-        </button>
-      </div>
+          <button class="btn-style" (click)="toggleLaunch('Y')" [ngClass]="{'highlight':successLaunch === true}">
+            True
+          </button>
+          <button class="btn-style" (click)="toggleLaunch('N')" [ngClass]="{'highlight':successLaunch === false}">
+            False
+          </button>
+        </div>
       </div>
       <div class="Land-success">
         <h3>Successful Landing</h3>
         <div class="all-year">
-        <button class="btn-style" (click)="toggleLand('Y')" [ngClass]="{'highlight':successLand === true}">
-          True
-        </button>
-        <button class="btn-style" (click)="toggleLand('N')" [ngClass]="{'highlight':successLand === false}">
-          False
-        </button>
+          <button class="btn-style" (click)="toggleLand('Y')" [ngClass]="{'highlight':successLand === true}">
+            True
+          </button>
+          <button class="btn-style" (click)="toggleLand('N')" [ngClass]="{'highlight':successLand === false}">
+            False
+          </button>
         </div>
       </div>
     </div>
@@ -47,7 +47,13 @@
           <div class="card-content">
             <h2 class="card-title">{{details['launch-title']}} #{{details['launch-num']}} </h2>
             <ul class="card-detail">
-              <li class=""><b>Mission Ids: </b>{{details['mission-id']}} </li>
+              <li class="">
+                <ul><b>Mission Ids: </b>
+                  <li *ngFor="let id of details['mission-id']">
+                    {{id}}
+                  </li>
+                </ul>
+              </li>
               <li class=""><b>Launch Year: </b>{{details['launch-year']}}</li>
               <li class=""><b>Successful Launch: </b>{{details['launch-Success']}}</li>
               <li class=""><b>Successful Landing: </b> {{details['launch_landing']}}</li>
