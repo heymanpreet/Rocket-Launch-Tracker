@@ -141,6 +141,9 @@ img {
       width: 20%;
       text-align: center;
     }
+    h3 {
+      text-align: left;
+    }
   }
 
   @media (min-width: 1401px) {
@@ -153,6 +156,9 @@ img {
     }
     .launch-detail-container {
       justify-content: center;
+    }
+    h3 {
+      text-align: center;
     }
   }
 

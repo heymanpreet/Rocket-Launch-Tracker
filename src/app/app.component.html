@@ -7,7 +7,7 @@
     <div class="left-content">
       <h2>Filters</h2>
       <div class="yearSelect">
-        <h3>Launch Year</h3>
+        <h3 style="color: gray;">Launch Year</h3>
         <div class="all-year">
           <button class="btn-style" [ngClass]="{'highlight':launch === yearSelectValue}"
             *ngFor="let launch of launchYears" (click)="loadLaunchYear(launch)">
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="Launch-success">
-        <h3>Successful Launch</h3>
+        <h3 style="color: gray ;">Successful Launch</h3>
         <div class="all-year">
           <button class="btn-style" (click)="toggleLaunch('Y')" [ngClass]="{'highlight':successLaunch === true}">
             True
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="Land-success">
-        <h3>Successful Landing</h3>
+        <h3 style="color: gray;">Successful Landing</h3>
         <div class="all-year">
           <button class="btn-style" (click)="toggleLand('Y')" [ngClass]="{'highlight':successLand === true}">
             True
