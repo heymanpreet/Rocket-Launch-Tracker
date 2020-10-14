@@ -1,5 +1,11 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { LaunchDetailsService } from './services/launch-details.service';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import {APP_BASE_HREF} from '@angular/common';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -7,6 +13,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports:[HttpClientModule,RouterModule.forRoot([]),RouterTestingModule],
+      providers:[LaunchDetailsService,{provide: APP_BASE_HREF, useValue: ''}]
     }).compileComponents();
   }));
 
@@ -26,6 +34,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to launch-tracker!');
+    expect(compiled.querySelector('h1').textContent).toContain('SpaceX Launch Programs');
   });
 });
