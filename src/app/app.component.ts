@@ -36,7 +36,7 @@ export class AppComponent {
     let obj;
     let landingSuccess;
     const launchDetails = await this.getLaunchDetail();
-    console.log(launchDetails);
+    // console.log(launchDetails);
     if (launchDetails && [launchDetails].length) {
       for (const i in launchDetails) {
         this.allLaunchDetails.push(launchDetails[i]);
