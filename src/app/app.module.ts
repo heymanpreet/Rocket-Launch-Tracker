@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientTestingModule} from '@angular/common/http/testing';
-import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [

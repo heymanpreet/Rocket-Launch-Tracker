@@ -4,10 +4,10 @@ import { AppComponent } from '../app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('LaunchDetailsService', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent],
-    imports: [HttpClientModule]
-  }));
+  // beforeEach(() => TestBed.configureTestingModule({
+  //   declarations: [AppComponent],
+  //   imports: [HttpClientModule]
+  // }));
 
   it('should be created', () => {
     const service: LaunchDetailsService = TestBed.get(LaunchDetailsService);
