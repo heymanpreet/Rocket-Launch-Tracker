@@ -10,7 +10,7 @@ export class LaunchDetailsService {
    }
    getLaunchDetails() {
      return this.http.get(this.url);
-   }
+   } 
 
    getSuccessfulLaunch(launch) {
     return this.http.get(this.url + "&launch_success=" + launch);
