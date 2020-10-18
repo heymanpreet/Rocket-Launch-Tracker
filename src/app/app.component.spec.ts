@@ -12,8 +12,6 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      imports:[HttpClientModule,RouterModule.forRoot([]),RouterTestingModule],
-      providers:[LaunchDetailsService,{provide: APP_BASE_HREF, useValue: ''}]
     }).compileComponents();
   }));
 
@@ -33,7 +31,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('SpaceX Launch Programs');
-    // expect(compiled.querySelector('h1').textContent).toContain('Welcome to launch-tracker!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to launch-tracker!');
   });
 });
