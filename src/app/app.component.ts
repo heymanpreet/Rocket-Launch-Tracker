@@ -45,16 +45,19 @@ export class AppComponent {
           this.launchYears.push(launchDetails[i].launch_year);
         }
         //landing-success
-        if(launchDetails[i].first_stag && launchDetails[i].first_stage.cores.land_success) {
-          landingSuccess = launchDetails[i].first_stage.cores[0].land_success;
+        let land_success_check = launchDetails[i].rocket.first_stage;
+        if (land_success_check && land_success_check.cores[0].land_success != null) {
+          // console.log("inside");
+          // console.log(launchDetails[i].rocket.first_stage);
+          landingSuccess = launchDetails[i].rocket.first_stage.cores[0].land_success;
         } else {
-          landingSuccess = undefined;
+          landingSuccess = "Data not available";
         }
         // Launch details for populate on UI
         obj = {
           "launch-title": launchDetails[i].mission_name, "launch-num": launchDetails[i].flight_number,
           "launch-year": launchDetails[i].launch_year, "launch-Success": launchDetails[i].launch_success, "mission-id": launchDetails[i].mission_id,
-          "image-link": launchDetails[i].links.mission_patch_small, "land-success":landingSuccess
+          "image-link": launchDetails[i].links.mission_patch_small, "land-success": landingSuccess
         }
         this.launch_details.push(obj);
       }
@@ -63,7 +66,7 @@ export class AppComponent {
       this.errorMsg = "Something Went wrong. Please try again."
     }
     // console.log(this.launchYears);
-    // console.log(this.launch_details);
+    console.log(this.launch_details);
   }
 
   loadLaunchYear(year) {
@@ -87,7 +90,7 @@ export class AppComponent {
     if (val === 'N') {
       this.successLand = false;
     }
-    this.calulateFilteredDetails(this.yearSelectValue,this.successLaunch,this.successLand)
+    this.calulateFilteredDetails(this.yearSelectValue, this.successLaunch, this.successLand)
     // this.toggleLaunch(this.successLand ? 'Y' : 'N');
   }
 
@@ -122,21 +125,24 @@ export class AppComponent {
     for (const i in filterDetails) {
       // Launch details for populate on UI
       //landing-success
-      if(filterDetails[i].first_stag && filterDetails[i].first_stage.cores.land_success) {
-        landingSuccess = filterDetails[i].first_stage.cores[0].land_success;
+      let land_success_check = filterDetails[i].rocket.first_stage;
+      if (land_success_check && land_success_check.cores[0].land_success != null) {
+        // console.log("inside");
+        // console.log(filterDetails[i].rocket.first_stage);
+        landingSuccess = filterDetails[i].rocket.first_stage.cores[0].land_success;
       } else {
-        landingSuccess = undefined;
+        landingSuccess = "Data not available";
       }
       obj = {
         "launch-title": filterDetails[i].mission_name, "launch-num": filterDetails[i].flight_number,
         "launch-year": filterDetails[i].launch_year, "launch-Success": filterDetails[i].launch_success,
-        "land-success":landingSuccess, "mission-id": filterDetails[i].mission_id,
+        "land-success": landingSuccess, "mission-id": filterDetails[i].mission_id,
         "image-link": filterDetails[i].links.mission_patch_small
       }
       this.launch_details.push(obj);
     }
     console.log(this.launch_details);
-    
+
 
   }
 
