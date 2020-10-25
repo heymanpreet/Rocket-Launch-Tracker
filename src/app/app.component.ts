@@ -18,7 +18,7 @@ export class AppComponent {
   successLand: boolean;
   yearSelectValue;
   errorMsg = "";
-  error: boolean = false;;
+  error: boolean = false;
 
   constructor(private launchDetailsService: LaunchDetailsService, private location: Location, private router: Router) { }
   ngOnInit() {
@@ -95,40 +95,40 @@ export class AppComponent {
   }
 
   calulateFilteredDetailsService(year, launch, land) {
-    // Only Launch Success
-    if (launch !== undefined && !this.yearSelected && !land) {
-      this.location.replaceState("/filterLaunchSuccess");
-      return this.launchDetailsService.getSuccessfulLaunch(launch).toPromise();
-    }
-    // Only Land Success
-    if (land !== undefined && !this.yearSelected && !launch) {
-      this.location.replaceState("/filterLandSuccess");
-      return this.launchDetailsService.getSuccessfulLand(land).toPromise();
-    }
-    // Only Year Selected
-    if (this.yearSelected === true) {
-      this.location.replaceState("/filterLaunchYear");
-      return this.launchDetailsService.getYearData(year).toPromise();
+    // Land, Launch & Year Success
+    if (land !== undefined && launch !== undefined && this.yearSelected) {
+      this.location.replaceState("/filterLaunchYear&land&launch");
+      return this.launchDetailsService.getSuccessfulLaunchLandYear(launch, land, year).toPromise();
     }
     // Land & Launch Success
-    if (land !== undefined && launch !== undefined) {
+    if (land !== undefined && launch !== undefined && !this.yearSelected) {
       this.location.replaceState("/filterLaunch&land");
       return this.launchDetailsService.getSuccessfulLaunchLand(launch, land).toPromise();
     }
     // Land & Year Success
     if (land !== undefined && this.yearSelected) {
       this.location.replaceState("/filterLaunch&land");
-      return this.launchDetailsService.getSuccessfulLandYear(land,year).toPromise();
+      return this.launchDetailsService.getSuccessfulLandYear(land, year).toPromise();
     }
     // Launch & Year Success
     if (launch !== undefined && this.yearSelected) {
       this.location.replaceState("/filterLaunch&land");
       return this.launchDetailsService.getSuccessfulLaunchYear(launch, year).toPromise();
     }
-    // Land, Launch & Year Success
-    if (land !== undefined && launch !== undefined && this.yearSelected) {
-      this.location.replaceState("/filterLaunchYear&land&launch");
-      return this.launchDetailsService.getSuccessfulLaunchLandYear(launch, land, year).toPromise();
+    // Only Launch Success
+    if (launch !== undefined && !this.yearSelected && land === undefined) {
+      this.location.replaceState("/filterLaunchSuccess");
+      return this.launchDetailsService.getSuccessfulLaunch(launch).toPromise();
+    }
+    // Only Land Success
+    if (land !== undefined && !this.yearSelected && launch === undefined) {
+      this.location.replaceState("/filterLandSuccess");
+      return this.launchDetailsService.getSuccessfulLand(land).toPromise();
+    }
+    // Only Year Selected
+    if (this.yearSelected === true && launch === undefined && land === undefined) {
+      this.location.replaceState("/filterLaunchYear");
+      return this.launchDetailsService.getYearData(year).toPromise();
     }
   }
 
@@ -142,8 +142,6 @@ export class AppComponent {
       //landing-success
       let land_success_check = filterDetails[i].rocket.first_stage;
       if (land_success_check && land_success_check.cores[0].land_success != null) {
-        // console.log("inside");
-        // console.log(filterDetails[i].rocket.first_stage);
         landingSuccess = filterDetails[i].rocket.first_stage.cores[0].land_success;
       } else {
         landingSuccess = "Data not available";
@@ -155,6 +153,13 @@ export class AppComponent {
         "image-link": filterDetails[i].links.mission_patch_small
       }
       this.launch_details.push(obj);
+    }
+    if (this.launch_details && this.launch_details.length === 0) {
+      this.error = true;
+      this.errorMsg = "No Data Available for following Selection."
+    } else {
+      this.error = false;
+      this.errorMsg = ""
     }
     console.log(this.launch_details);
 

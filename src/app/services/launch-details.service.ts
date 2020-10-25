@@ -25,7 +25,7 @@ export class LaunchDetailsService {
    }
 
    getSuccessfulLaunchLandYear(launch,land,year) {
-    return this.http.get(this.url + "&launch_success=true&land_success=true&launch_year=" + year);
+    return this.http.get(this.url + "&launch_success=" + launch + "&land_success=" + land + "&launch_year=" + year);
    }
 
    getYearData(year) {
