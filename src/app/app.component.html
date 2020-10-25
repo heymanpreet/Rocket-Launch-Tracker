@@ -49,9 +49,9 @@
             <h2 class="card-title">{{details['launch-title']}} #{{details['launch-num']}} </h2>
             <ul class="card-detail">
               <li class="">
-                <ul style="text-align: left;"><b>Mission Ids: </b>
+                <ul style="margin: 0px;padding: 0px;"><b>Mission Ids: </b>
                   <li *ngFor="let id of details['mission-id']">
-                    {{id}}
+                    {{id | json}}
                   </li>
                 </ul>
               </li>
