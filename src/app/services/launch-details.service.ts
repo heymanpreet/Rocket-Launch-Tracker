@@ -31,4 +31,12 @@ export class LaunchDetailsService {
    getYearData(year) {
     return this.http.get(this.url + "&launch_year=" + year);
    }
+
+   getSuccessfulLandYear(land,year) {
+    return this.http.get(this.url + "&launch_year=" + year +"&land_success="+ land);
+   }
+
+   getSuccessfulLaunchYear(launch,year) {
+    return this.http.get(this.url + "&launch_year=" + year + "&launch_success=" + launch);
+   }
 }

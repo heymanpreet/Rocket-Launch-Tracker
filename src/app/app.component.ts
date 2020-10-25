@@ -66,13 +66,13 @@ export class AppComponent {
       this.errorMsg = "Something Went wrong. Please try again."
     }
     // console.log(this.launchYears);
-    console.log(this.launch_details);
+    // console.log(this.launch_details);
   }
 
   loadLaunchYear(year) {
     this.yearSelected = true;
     this.yearSelectValue = year;
-    this.calulateFilteredDetails(year, this.successLaunch, this.successLand)
+    this.calulateFilteredDetails(this.yearSelectValue, this.successLaunch, this.successLand)
   }
   toggleLaunch(val) {
     if (val === 'Y') {
@@ -95,22 +95,37 @@ export class AppComponent {
   }
 
   calulateFilteredDetailsService(year, launch, land) {
-    if (launch !== undefined && !year && !land) {
+    // Only Launch Success
+    if (launch !== undefined && !this.yearSelected && !land) {
       this.location.replaceState("/filterLaunchSuccess");
       return this.launchDetailsService.getSuccessfulLaunch(launch).toPromise();
     }
-    if (land !== undefined && !year && !launch) {
+    // Only Land Success
+    if (land !== undefined && !this.yearSelected && !launch) {
       this.location.replaceState("/filterLandSuccess");
       return this.launchDetailsService.getSuccessfulLand(land).toPromise();
     }
+    // Only Year Selected
     if (this.yearSelected === true) {
       this.location.replaceState("/filterLaunchYear");
       return this.launchDetailsService.getYearData(year).toPromise();
     }
+    // Land & Launch Success
     if (land !== undefined && launch !== undefined) {
-      this.location.replaceState("/filterLaunchYear&land");
+      this.location.replaceState("/filterLaunch&land");
       return this.launchDetailsService.getSuccessfulLaunchLand(launch, land).toPromise();
     }
+    // Land & Year Success
+    if (land !== undefined && this.yearSelected) {
+      this.location.replaceState("/filterLaunch&land");
+      return this.launchDetailsService.getSuccessfulLandYear(land,year).toPromise();
+    }
+    // Launch & Year Success
+    if (launch !== undefined && this.yearSelected) {
+      this.location.replaceState("/filterLaunch&land");
+      return this.launchDetailsService.getSuccessfulLaunchYear(launch, year).toPromise();
+    }
+    // Land, Launch & Year Success
     if (land !== undefined && launch !== undefined && this.yearSelected) {
       this.location.replaceState("/filterLaunchYear&land&launch");
       return this.launchDetailsService.getSuccessfulLaunchLandYear(launch, land, year).toPromise();
