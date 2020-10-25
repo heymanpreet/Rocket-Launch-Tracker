@@ -2,8 +2,8 @@
   <div class="header">
     <h1>SpaceX Launch Programs</h1>
   </div>
-  <span *ngIf="error"><h2>{{errorMsg}}</h2></span>
-  <div class="full-content" *ngIf="!error">
+  <!-- <span *ngIf="error"><h2>{{errorMsg}}</h2></span> -->
+  <div class="full-content">
     <div class="left-content">
       <h2>Filters</h2>
       <div class="yearSelect">
@@ -39,7 +39,8 @@
       </div>
     </div>
     <div class="right-content">
-      <div class="launch-detail-container">
+      <span *ngIf="error"><h2>{{errorMsg}}</h2></span>
+      <div class="launch-detail-container" *ngIf="!error">
         <meta name="description" content="Simple website to keep track of all SpaceX launches till date.">
         <div class="card" *ngFor="let details of launch_details">
           <div class="card-image">
