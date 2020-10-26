@@ -91,7 +91,6 @@ export class AppComponent {
       this.successLand = false;
     }
     this.calulateFilteredDetails(this.yearSelectValue, this.successLaunch, this.successLand)
-    // this.toggleLaunch(this.successLand ? 'Y' : 'N');
   }
 
   calulateFilteredDetailsService(year, launch, land) {
@@ -133,37 +132,49 @@ export class AppComponent {
   }
 
   async calulateFilteredDetails(year, launch, land) {
-    const filterDetails = await this.calulateFilteredDetailsService(this.yearSelectValue, this.successLaunch, this.successLand);
+    const filterDetails = await this.calulateFilteredDetailsService(year, launch, land);
     let obj;
     let landingSuccess;
     this.launch_details = [];
-    for (const i in filterDetails) {
-      // Launch details for populate on UI
-      //landing-success
-      let land_success_check = filterDetails[i].rocket.first_stage;
-      if (land_success_check && land_success_check.cores[0].land_success != null) {
-        landingSuccess = filterDetails[i].rocket.first_stage.cores[0].land_success;
-      } else {
-        landingSuccess = "Data not available";
+    if (filterDetails) {
+      this.error = false;
+      this.errorMsg = "";
+      for (const i in filterDetails) {
+        //landing-success
+        let land_success_check = filterDetails[i].rocket.first_stage;
+        if (land_success_check && land_success_check.cores[0].land_success != null) {
+          landingSuccess = filterDetails[i].rocket.first_stage.cores[0].land_success;
+        } else {
+          landingSuccess = "Data not available";
+        }
+        obj = {
+          "launch-title": filterDetails[i].mission_name, "launch-num": filterDetails[i].flight_number,
+          "launch-year": filterDetails[i].launch_year, "launch-Success": filterDetails[i].launch_success,
+          "land-success": landingSuccess, "mission-id": filterDetails[i].mission_id,
+          "image-link": filterDetails[i].links.mission_patch_small
+        }
+        this.launch_details.push(obj);
       }
-      obj = {
-        "launch-title": filterDetails[i].mission_name, "launch-num": filterDetails[i].flight_number,
-        "launch-year": filterDetails[i].launch_year, "launch-Success": filterDetails[i].launch_success,
-        "land-success": landingSuccess, "mission-id": filterDetails[i].mission_id,
-        "image-link": filterDetails[i].links.mission_patch_small
-      }
-      this.launch_details.push(obj);
     }
-    if (this.launch_details && this.launch_details.length === 0) {
+    if (this.launch_details && this.launch_details.length > 0) {
+      this.error = false;
+      this.errorMsg = "";
+    } else {
       this.error = true;
       this.errorMsg = "No Data Available for following Selection."
-    } else {
-      this.error = false;
-      this.errorMsg = ""
     }
-    console.log(this.launch_details);
+    // console.log(this.launch_details);
+  }
 
-
+  clearFilter() {
+    this.successLaunch = undefined;
+    this.successLand = undefined;
+    this.yearSelectValue = undefined;
+    this.yearSelected = false;
+    this.error = false;
+    this.errorMsg = "";
+    this.getAllData();
+    this.location.replaceState('/allLaunches');
   }
 
 

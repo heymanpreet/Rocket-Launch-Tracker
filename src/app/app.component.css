@@ -60,6 +60,7 @@ body {
 }
 .card-title {
   text-align: center;
+  word-break: break-all;
 }
 .ul {
   text-align: left;
@@ -188,6 +189,7 @@ img {
     font-size: 13px;
     margin-top: 35px;
     text-align: center;
+    font-weight: bold;
   }
 
   .highlight {

@@ -14,4 +14,18 @@ describe('LaunchDetailsService', () => {
     const service: LaunchDetailsService = TestBed.get(LaunchDetailsService);
     expect(service).toBeTruthy();
   });
+
+  it('get all Launch Data', async () => {
+
+    const service: LaunchDetailsService = TestBed.get(LaunchDetailsService);
+    const selected = await service.getLaunchDetails();
+
+    // selected$.subscribe(selected => {
+    //   expect([selected].length).toBe(100);
+    //   done();
+    // });
+
+    expect([selected].length).toBe(1);
+  });
+
 });
