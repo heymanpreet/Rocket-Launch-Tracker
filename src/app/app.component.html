@@ -42,14 +42,14 @@
       <div class="launch-detail-container" *ngIf="!error">
         <meta name="description" content="Simple website to keep track of all SpaceX launches till date.">
         <div class="card" *ngFor="let details of launch_details">
-          <div class="card-image">
+          <div class="card-image" *ngIf="details">
             <img data-src="{{details['image-link']}}" class="lazyload" alt="Launch Image">
           </div>
-          <div class="card-content">
+          <div class="card-content" *ngIf="details">
             <h2 class="card-title">{{details['launch-title']}} #{{details['launch-num']}} </h2>
             <ul class="card-detail">
               <li class="">
-                <ul style="margin: 0px;padding: 0px;"><b>Mission Ids: </b>
+                <ul style="margin: 0px;padding: 0px;list-style-type: none;"><b>Mission Ids: </b>
                   <li *ngFor="let id of details['mission-id']">
                     {{id}}
                   </li>
