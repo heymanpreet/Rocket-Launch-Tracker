@@ -164,8 +164,17 @@ export class AppComponent {
       this.errorMsg = "No Data Available for following Selection."
     }
     // console.log(this.launch_details);
+  }
 
-
+  clearFilter() {
+    this.successLaunch = undefined;
+    this.successLand = undefined;
+    this.yearSelectValue = undefined;
+    this.yearSelected = false;
+    this.error = false;
+    this.errorMsg = "";
+    this.getAllData();
+    this.location.replaceState('/allLaunches');
   }
 
 
