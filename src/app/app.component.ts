@@ -72,6 +72,8 @@ export class AppComponent {
   loadLaunchYear(year) {
     this.yearSelected = true;
     this.yearSelectValue = year;
+    this.successLaunch = undefined;
+    this.successLand = undefined;
     this.calulateFilteredDetails(this.yearSelectValue, this.successLaunch, this.successLand)
   }
   toggleLaunch(val) {
@@ -144,9 +146,10 @@ export class AppComponent {
         let land_success_check = filterDetails[i].rocket.first_stage;
         if (land_success_check && land_success_check.cores[0].land_success != null) {
           landingSuccess = filterDetails[i].rocket.first_stage.cores[0].land_success;
-        } else {
-          landingSuccess = "Data not available";
-        }
+        } 
+        // else {
+        //   landingSuccess = "Data not available";
+        // }
         obj = {
           "launch-title": filterDetails[i].mission_name, "launch-num": filterDetails[i].flight_number,
           "launch-year": filterDetails[i].launch_year, "launch-Success": filterDetails[i].launch_success,
