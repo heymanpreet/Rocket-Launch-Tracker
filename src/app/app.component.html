@@ -5,11 +5,12 @@
   <div class="full-content">
     <div class="left-content">
       <h2>Filters</h2>
-      <button class="btn-style" (click)="clearFilter()">Clear All Filters</button>
+      <!-- <button class="btn-style" (click)="clearFilter()">Clear All Filters</button> -->
       <div class="yearSelect">
         <h3 style="color: gray;">Launch Year</h3>
+        <hr class="horizontal-line" />
         <div class="all-year">
-          <button class="btn-style" [ngClass]="{'highlight':launch === yearSelectValue}"
+          <button class="btn-style" id="btn-width" [ngClass]="{'highlight':launch === yearSelectValue}"
             *ngFor="let launch of launchYears" (click)="loadLaunchYear(launch)">
             {{launch}}
           </button>
@@ -17,22 +18,24 @@
       </div>
       <div class="Launch-success">
         <h3 style="color: gray ;">Successful Launch</h3>
+        <hr class="horizontal-line" />
         <div class="all-year">
-          <button class="btn-style" (click)="toggleLaunch('Y')" [ngClass]="{'highlight':successLaunch === true}">
+          <button class="btn-style" id="btn-width" (click)="toggleLaunch('Y')" [ngClass]="{'highlight':successLaunch === true}">
             True
           </button>
-          <button class="btn-style" (click)="toggleLaunch('N')" [ngClass]="{'highlight':successLaunch === false}">
+          <button class="btn-style" id="btn-width" (click)="toggleLaunch('N')" [ngClass]="{'highlight':successLaunch === false}">
             False
           </button>
         </div>
       </div>
       <div class="Land-success">
         <h3 style="color: gray;">Successful Landing</h3>
+        <hr class="horizontal-line" />
         <div class="all-year">
-          <button class="btn-style" (click)="toggleLand('Y')" [ngClass]="{'highlight':successLand === true}">
+          <button class="btn-style" id="btn-width" (click)="toggleLand('Y')" [ngClass]="{'highlight':successLand === true}">
             True
           </button>
-          <button class="btn-style" (click)="toggleLand('N')" [ngClass]="{'highlight':successLand === false}">
+          <button class="btn-style" id="btn-width" (click)="toggleLand('N')" [ngClass]="{'highlight':successLand === false}">
             False
           </button>
         </div>

@@ -18,7 +18,7 @@ body {
     font-style: normal;
     font-weight: 400;
     letter-spacing: 0;
-    padding: 1rem;
+    /* padding: 1rem; */
     overflow: hidden;
   }
 .full-content {
@@ -29,16 +29,21 @@ body {
 .left-content {
     display: flex;
     flex-direction: column;
-    width: 20%;
-    height: 100vh;
-    overflow-y: scroll;
+    width: 25%;
+    height: fit-content;
+    /* overflow-y: scroll; */
+    border: 2px solid lightgrey;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 }
 .right-content {
     display: flex;
     flex-direction: column;
     width: 80%;
-    height: 100vh;
-    overflow-y: scroll;
+    /* height: 100vh; */
+    margin-left: 20px;
+    /* overflow-y: scroll; */
+    /* border: 2px solid lightgrey;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%); */
 }
 .launch-detail-container {
     display: flex;
@@ -52,15 +57,21 @@ body {
     height: auto;
     width: 20%;
     background-color: white;
-    border-radius: 0.25rem;
-    box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+    /* border-radius: 0.25rem;
+    box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25); */
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    transition: 0.3s;
+    border: 2px solid lightgrey;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 }
 .card-title {
   text-align: center;
   word-break: break-all;
+}
+.card-image {
+  background-color: lightgrey;
 }
 .ul {
   text-align: left;
@@ -74,12 +85,15 @@ img {
     height: auto;
     max-width: 100%;
     vertical-align: middle;
+    height: 150px;
+    width: 150px;
   }
 
   @media (max-width: 700px) {
     .card {
-      width: 32%;
+      width: 60%;
       text-align: center;
+      transition: 0.3s;
     }
     .full-content {
         display: flex;
@@ -89,7 +103,7 @@ img {
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 100vh;
+        /* height: 100vh; */
         overflow: scroll;
         text-align: center;
     }
@@ -97,10 +111,21 @@ img {
         display: flex;
         flex-direction: column;
         width: 100%;
+        border: 2px solid lightgrey;
+        margin-left: 0px !important;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
     }
     .all-year {
       justify-content: center;
     }
+    #btn-width:nth-child(odd) {
+      margin-top: 10px;
+      margin-left: 21%;
+    }
+    #btn-width:nth-child(even) {
+      margin-right: 21%;
+    }
+
     .header {
       text-align: center;
     }
@@ -113,6 +138,7 @@ img {
     .card {
       width: 33%;
       text-align: center;
+      transition: 0.3s;
     }
     .full-content {
         display: flex;
@@ -137,22 +163,42 @@ img {
     .launch-detail-container {
       justify-content: center;
   }
+  .header {
+    text-align: left;
+  }
+  .btn-style {
+    margin: 15px 15px !important;
+  }
     
   }
   @media (min-width: 1025px) {
     .card {
       width: 20%;
       text-align: center;
+      transition: 0.3s;
     }
     h3 {
+      text-align: center;
+      margin: 2px;
+    }
+    .header {
       text-align: left;
     }
+    .left-content {
+      display: flex;
+      flex-direction: column;
+      /* width: 32%; */
+      text-align: center;
+  }
+  .all-year {
+    justify-content: center;
+  }
   }
 
   @media (min-width: 1401px) {
     .container {
       text-align: center;
-      max-width: 1400px;
+      max-width: 1440px;
     }
     .all-year{
       justify-content: center;
@@ -162,6 +208,10 @@ img {
     }
     h3 {
       text-align: center;
+      margin: 2px;
+    }
+    .header {
+      text-align: left;
     }
   }
 
@@ -177,11 +227,11 @@ img {
   border-radius: 4px;
   font-weight: 400;
   display: block;
-  width: auto;
+  /* width: auto; */
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: #7bac71;
-  margin: 15px;
+  margin: 15px 25px;
 }
 
 .made_by{
@@ -195,3 +245,11 @@ img {
   .highlight {
       background-color: green;
   }
+  .horizontal-line {
+    width: 70%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  /* h3{
+    margin: 2px;
+  } */
