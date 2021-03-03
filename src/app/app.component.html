@@ -47,7 +47,7 @@
         <meta name="description" content="Simple website to keep track of all SpaceX launches till date.">
         <div class="card" *ngFor="let details of launch_details">
           <div class="card-image" *ngIf="details">
-            <img data-src="{{details['image-link']}}" class="lazyload" alt="Launch Image">
+            <img data-src="{{details['image-link']}}" class="lazyload" alt="Launch Image" loading="lazy">
           </div>
           <div class="card-content" *ngIf="details">
             <h2 class="card-title">{{details['launch-title']}} #{{details['launch-num']}} </h2>

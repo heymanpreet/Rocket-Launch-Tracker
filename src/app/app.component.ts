@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { LaunchDetailsService } from './services/launch-details.service';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs/internal/Observable';
+import { switchMap, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +21,9 @@ export class AppComponent {
   yearSelectValue;
   errorMsg = "";
   error: boolean = false;
+  defaultShuttleInfo$: Observable<any[]>;
 
-  constructor(private launchDetailsService: LaunchDetailsService, private location: Location, private router: Router) { }
+  constructor(private launchDetailsService: LaunchDetailsService, private location: Location, private router: Router,private route: ActivatedRoute) { }
   ngOnInit() {
     this.getAllData();
     this.successLaunch = undefined;
@@ -169,16 +172,16 @@ export class AppComponent {
     // console.log(this.launch_details);
   }
 
-  clearFilter() {
-    this.successLaunch = undefined;
-    this.successLand = undefined;
-    this.yearSelectValue = undefined;
-    this.yearSelected = false;
-    this.error = false;
-    this.errorMsg = "";
-    this.getAllData();
-    this.location.replaceState('/allLaunches');
-  }
+  // clearFilter() {
+  //   this.successLaunch = undefined;
+  //   this.successLand = undefined;
+  //   this.yearSelectValue = undefined;
+  //   this.yearSelected = false;
+  //   this.error = false;
+  //   this.errorMsg = "";
+  //   this.getAllData();
+  //   this.location.replaceState('/allLaunches');
+  // }
 
 
 }

@@ -1,24 +1,41 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LaunchDetailsService } from './services/launch-details.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import {APP_BASE_HREF} from '@angular/common';
+
+const fakeShuttleInfo:any[] = [
+  {
+    mission_name: "mission_mars",
+    flight_number: 2025,
+    mission_id: [1,2],
+    launch_year: "2025",
+    launch_success: true,
+    launch_landing: true,
+    links: {
+      mission_patch_small: "https://humans-of-mars.com"
+    }
+  }
+]
 
 describe('AppComponent', () => {
   let appComponent: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
+  let router;
+  const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
       imports:[HttpClientModule,RouterModule.forRoot([]),RouterTestingModule],
-      providers:[LaunchDetailsService,{provide: APP_BASE_HREF, useValue: ''}]
+      providers:[LaunchDetailsService,{provide: APP_BASE_HREF, useValue: ''},{provide: Router, useValue: routerSpy}]
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     appComponent = fixture.componentInstance;
+    router = fixture.debugElement.injector.get(Router);
   }));
 
   it('should create the app', () => {
@@ -62,4 +79,25 @@ describe('AppComponent', () => {
     // assertion
       expect(appComponent.successLaunch).toBe(true);
   });
+
+  it('allLaunches route', () => {
+    appComponent.calulateFilteredDetailsService(undefined,true,undefined);
+    // appComponent.ngOnInit();
+    expect(router.navigateByUrl).toHaveBeenCalledWith(['/allLaunches']);
+  })
+
+  // it('checking service data', fakeAsync(() => {
+  //   tick();
+  //   fixture.detectChanges();
+  //   fixture.whenStable().then(()=>{
+  //     // appComponent.getLaunchDetail().subscribe(
+  //     //   shuttleInfo => expect(shuttleInfo).toBe(fakeShuttleInfo)
+  //     // );
+  //     const data = appComponent.launch_details;
+  //     expect(data).toBe(fakeShuttleInfo)
+  //   })
+  // }));
+
+
+  
 });
